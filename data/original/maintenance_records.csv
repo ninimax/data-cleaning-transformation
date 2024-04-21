@@ -1,0 +1,46 @@
+truck_id,maintenance_date,milage,service_type,maintenance_cost,service_center,technician_email
+TRK012,30-02-2022,147848,Repair,1710.08,Center C,tech2@sample
+TRK002,01-01-2022,102787,repair,1635.99,nan,tech3@example.com
+TRK010,08-02-2024,137948,  Inspection  ,801.37,Center A,incorrectEmailFormat
+TRK004,,65016,Inspection,370.0,nan,tech2@sample
+TRK014,03-06-2023,150546,nan,2701.93,Center A,tech2@sample
+,19-02-2023,199125,nan,2711.21,nan,tech2@sample
+TRK015,06-05-2023,31959,MAINTENANCE,1935.99,nan,tech1@example.com
+TRK008,21-07-2023,146602,Maintenance,1083.19,Center B,
+TRK014,29-01-2024,129101,nan,1112.71,Center A,tech1@example.com
+TRK008,04-03-2023,13748,Inspection,2205.27,Center B,tech1@example.com
+TRKXX1,02-01-2024,23545,Repair,2701.62,Center A,tech3@example.com
+TRK013,18-08-2023,137659,nan,2672.55,Center B,tech2@sample
+,12-12-2023,175838,Maintenance,2361.64,Center C,
+TRK015,26-02-2023,83530,Inspection  ,1961.89,nan,tech3@example.com
+TRK013,27-06-2023,103557,nan,344.01,Center A,tech1@example.com
+TRK009,21-06-2023,71087,nan,568.72,Center A,tech2@sample
+TRK015,23-12-2023,78840,Inspection,2705.81,nan,tech3@example.com
+TRK013,09-11-2023,128451,nan,1858.64,Center A,tech2@sample
+TRK001,06-07-2023,195456,Inspection,126.67,Center A,tech3@example.com
+TRK007,27-06-2023,61005,Repair,394.27,Center B,tech2@sample
+TRK009,21-06-2023,187648,Inspection,2024.16,Center A,tech1@example.com
+TRK001,23-09-2023,49353,Inspection,114.68,Center C,
+TRK012,26-08-2023,62733,Inspection,566.34,Center C,tech1@example.com
+TRK008,15-01-2024,75318,nan,1691.33,nan,
+TRK011,08-01-2024,164736,nan,2106.5,Center A,tech2@sample
+TRKXX2,31-01-2024,77172,Inspection,1990.69,nan,tech3@example.com
+TRK008,06-09-2023,103264,nan,750.38,Center C,tech1@example.com
+TRK003,23-03-2023,36736,Maintenance,2165.32,Center A,
+TRK003,10-08-2023,122859,Maintenance,788.02,Center A,tech1@example.com
+TRK001,15-06-2023,122181,nan,1043.66,nan,
+TRK005,19-11-2023,141926,nan,2264.83,Center C,tech1@example.com
+TRK010,05-05-2023,100084,Inspection,1983.94,Center A,
+TRK007,09-12-2023,179695,Repair,2562.75,nan,
+TRK009,13-12-2023,187789,Inspection,371.66,Center B,tech2@sample
+TRK008,02-10-2023,60859,nan,1166.38,Center A,
+TRK012,05-05-2023,135657,Maintenance,869.09,Center B,tech3@example.com
+TRK002,16-01-2024,167381,Maintenance,807.57,Center C,tech3@example.com
+TRK001,28-10-2023,80467,Repair,2921.73,Center B,tech3@example.com
+TRKXX1,31-12-2023,193734,Inspection,1239.98,Center B,
+TRK005,10-03-2023,108506,Inspection,2686.94,Center C,tech2@sample
+TRK003,03-05-2023,119751,Repair,1930.
+TRK008,21-07-2023,146602,Maintenance,1083.19,Center B,
+TRK014,29-01-2024,129101,nan,1112.71,Center A,tech1@example.com
+TRK008,04-03-2023,13748,Inspection,2205.27,Center B,tech1@example.com
+TRKXX1,02-01-2024,23545,Repair,2701.62,Center A,tech3@example.com

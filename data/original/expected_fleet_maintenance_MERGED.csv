@@ -1,0 +1,38 @@
+truck_id,model,purchase_date,purchase_cost,initial_milage,maintenance_date,milage,maintenance_cost,service_center,technician_email,service_type_inspection,service_type_maintenance,service_type_repair,email_valid
+TRK001,Quantum Cruiser,2022-10-29,44699.26,8838.0,2023-07-06,195456,126.67,Center A,tech3@example.com,True,False,False,True
+TRK001,Quantum Cruiser,2022-10-29,44699.26,8838.0,2023-09-23,49353,114.68,Center C,,True,False,False,False
+TRK001,Quantum Cruiser,2022-10-29,44699.26,8838.0,2023-06-15,122181,1043.66,,,False,False,False,False
+TRK001,Quantum Cruiser,2022-10-29,44699.26,8838.0,2023-10-28,80467,2921.73,Center B,tech3@example.com,False,False,True,True
+TRK002,Titan Trekker,,44466.13,14502.0,2022-01-01,102787,1635.99,,tech3@example.com,False,False,True,True
+TRK002,Titan Trekker,,44466.13,14502.0,2024-01-16,167381,807.57,Center C,tech3@example.com,False,True,False,True
+TRK003,Titan Trekker,2021-06-17,20282.65,10627.0,2023-03-23,36736,2165.32,Center A,,False,True,False,False
+TRK003,Titan Trekker,2021-06-17,20282.65,10627.0,2023-08-10,122859,788.02,Center A,tech1@example.com,False,True,False,True
+TRK003,Titan Trekker,2021-06-17,20282.65,10627.0,2023-05-03,119751,1930.0,,,False,False,True,False
+TRK004,Voyager V8,2022-01-11,20922.5,8792.0,,65016,370.0,,tech2@sample,True,False,False,False
+TRK005,Sky Gazer,2023-06-28,40990.99,10555.0,2023-11-19,141926,2264.83,Center C,tech1@example.com,False,False,False,True
+TRK005,Sky Gazer,2023-06-28,40990.99,10555.0,2023-03-10,108506,2686.94,Center C,tech2@sample,True,False,False,False
+TRK007,Eco Ranger,,8433.0,,2023-06-27,61005,394.27,Center B,tech2@sample,False,False,True,False
+TRK007,Eco Ranger,,8433.0,,2023-12-09,179695,2562.75,,,False,False,True,False
+TRK008,Sky Gazer,2021-09-27,58950.22,10233.0,2023-07-21,146602,1083.19,Center B,,False,True,False,False
+TRK008,Sky Gazer,2021-09-27,58950.22,10233.0,2023-03-04,13748,2205.27,Center B,tech1@example.com,True,False,False,True
+TRK008,Sky Gazer,2021-09-27,58950.22,10233.0,2024-01-15,75318,1691.33,,,False,False,False,False
+TRK008,Sky Gazer,2021-09-27,58950.22,10233.0,2023-09-06,103264,750.38,Center C,tech1@example.com,False,False,False,True
+TRK008,Sky Gazer,2021-09-27,58950.22,10233.0,2023-10-02,60859,1166.38,Center A,,False,False,False,False
+TRK009,Quantum Cruiser,2022-11-27,29310.85,11016.0,2023-06-21,71087,568.72,Center A,tech2@sample,False,False,False,False
+TRK009,Quantum Cruiser,2022-11-27,29310.85,11016.0,2023-06-21,187648,2024.16,Center A,tech1@example.com,True,False,False,True
+TRK009,Quantum Cruiser,2022-11-27,29310.85,11016.0,2023-12-13,187789,371.66,Center B,tech2@sample,True,False,False,False
+TRK010,Voyager V8,2022-07-02,23624.26,2612.0,2024-02-08,137948,801.37,Center A,incorrectEmailFormat,True,False,False,False
+TRK010,Voyager V8,2022-07-02,23624.26,2612.0,2023-05-05,100084,1983.94,Center A,,True,False,False,False
+TRK011,Quantum Cruiser,2022-09-18,44735.44,15787.0,2024-01-08,164736,2106.5,Center A,tech2@sample,False,False,False,False
+,Sky Gazer,2021-08-22,,17159.0,2023-02-19,199125,2711.21,,tech2@sample,False,False,False,False
+,Sky Gazer,2021-08-22,,17159.0,2023-12-12,175838,2361.64,Center C,,False,True,False,False
+TRK013,Sky Gazer,2022-10-16,59329.24,12206.0,2023-08-18,137659,2672.55,Center B,tech2@sample,False,False,False,False
+TRK013,Sky Gazer,2022-10-16,59329.24,12206.0,2023-06-27,103557,344.01,Center A,tech1@example.com,False,False,False,True
+TRK013,Sky Gazer,2022-10-16,59329.24,12206.0,2023-11-09,128451,1858.64,Center A,tech2@sample,False,False,False,False
+TRK014,Sky Gazer,2023-04-28,38670.52,8226.0,2023-06-03,150546,2701.93,Center A,tech2@sample,False,False,False,False
+TRK014,Sky Gazer,2023-04-28,38670.52,8226.0,2024-01-29,129101,1112.71,Center A,tech1@example.com,False,False,False,True
+TRK015,Quantum Cruiser,2023-02-02,,,2023-05-06,31959,1935.99,,tech1@example.com,False,True,False,True
+TRK015,Quantum Cruiser,2023-02-02,,,2023-02-26,83530,1961.89,,tech3@example.com,True,False,False,True
+TRK015,Quantum Cruiser,2023-02-02,,,2023-12-23,78840,2705.81,,tech3@example.com,True,False,False,True
+TRK002,Titan Trekker,2023-07-29,44466.13,14502.0,2022-01-01,102787,1635.99,,tech3@example.com,False,False,True,True
+TRK002,Titan Trekker,2023-07-29,44466.13,14502.0,2024-01-16,167381,807.57,Center C,tech3@example.com,False,True,False,True
