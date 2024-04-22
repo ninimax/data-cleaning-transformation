@@ -2,13 +2,15 @@
 Main entry point of the program for data cleaning and transformation.
 """
 import json
+import os
 
 import ingestion
 from src import logger, quality_checks
 
 application_logger = logger.get_logger(__name__, logger.LoggerType.APPLICATION)
 
-JSON_CONFIG_DIR = "../config/data_sources.json"
+ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+JSON_CONFIG_DIR = f"{ROOT_PATH}/config/data_sources.json"
 
 
 def load_json(file_path):
@@ -20,7 +22,7 @@ def load_json(file_path):
 def data_ingestion(type):
     try:
         json_obj = load_json(JSON_CONFIG_DIR)
-        data_source_path = json_obj[type]["path"]
+        data_source_path = f"{ROOT_PATH}/{json_obj[type]["path"]}"
         df = ingestion.read_as_dataframes(data_source_path)
         return df
     except FileNotFoundError as e:

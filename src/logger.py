@@ -9,8 +9,7 @@ from dotenv import find_dotenv, load_dotenv
 env_file = find_dotenv()
 load_dotenv()
 
-CONFIG_DIR = "../config"
-LOG_DIR = "../logs"
+ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class LoggerType(Enum):
@@ -19,16 +18,13 @@ class LoggerType(Enum):
 
 
 def get_logger(name, logger_type):
-    sys.tracebacklimit = 0 # so no stack trace is presented
-    log_configs = {"DEV": "logging.dev.ini", "PROD": "logging.prod.ini"}
-    config = log_configs.get(os.environ["ENV"], "logging.dev.ini")
-    config_path = "/".join([CONFIG_DIR, config])
-
+    sys.tracebacklimit = 0  # so no stack trace is presented
+    config_path = f"{ROOT_PATH}/config/{"logging.dev.ini" if os.environ["ENV"] == "DEV" else "logging.prod.ini"}"
     logging.config.fileConfig(
         config_path,
         disable_existing_loggers=False,
         defaults={
-            "logfilename": f"{LOG_DIR}/{'application_errors' if logger_type == LoggerType.APPLICATION else 'data_quality'}.log"},
+            "logfilename": f"{ROOT_PATH}/logs/{'application_errors' if logger_type == LoggerType.APPLICATION else 'data_quality'}.log"},
     )
 
     return logging.getLogger(name)
