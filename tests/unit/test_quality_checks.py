@@ -5,11 +5,11 @@ from src import quality_checks
 import unittest
 
 
-class TestStringMethods(unittest.TestCase):
+class TestQualityChecks(unittest.TestCase):
 
     def test_count_duplicates(self):
         test_input = pd.DataFrame({'Name': ['A', 'B', 'B', 'B', 'C'], 'ID': [1, 2, 2, 22, 3]})
-        actual = quality_checks.count_duplicates(test_input)
+        actual = quality_checks.count_full_duplicates(test_input)
         expected = 2
         self.assertEqual(actual, expected)
 

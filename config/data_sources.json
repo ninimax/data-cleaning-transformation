@@ -1,5 +1,12 @@
 {
+  "maintenance": {
     "name": "Maintenance Records",
     "type": "maintenance",
-    "path": "./data/original/maintenance_records.csv"
+    "path": "../data/maintenance_records.csv"
+  },
+  "fleet": {
+    "name": "Fleet Information",
+    "type": "fleet",
+    "path": "../data/fleet_information.csv"
+  }
 }
