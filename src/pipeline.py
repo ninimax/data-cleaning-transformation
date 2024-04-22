@@ -13,10 +13,14 @@ ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_CONFIG_DIR = f"{ROOT_PATH}/config/data_sources.json"
 
 
-def load_json(file_path):
-    with open(file_path, 'r') as f:
-        data = json.load(f)
-    return data
+def run():
+    application_logger.info("Program started")
+    fleet, maintenance = data_ingestion().values()
+    data_cleaning(fleet)
+    data_cleaning(maintenance)
+
+    data_transformation()
+    application_logger.info("Program finished")
 
 
 def data_ingestion():
@@ -34,6 +38,12 @@ def data_ingestion():
         application_logger.error(e)
 
 
+def load_json(file_path):
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    return data
+
+
 def data_cleaning(df):
     nbr_of_duplicates = quality_checks.count_full_duplicates(df)
 
@@ -43,16 +53,6 @@ def data_cleaning(df):
 
 def data_transformation():
     return None
-
-
-def run():
-    application_logger.info("Program started")
-    fleet, maintenance = data_ingestion().values()
-    data_cleaning(fleet)
-    data_cleaning(maintenance)
-
-    data_transformation()
-    application_logger.info("Program finished")
 
 
 if __name__ == "__main__":
