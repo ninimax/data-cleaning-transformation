@@ -1,5 +1,11 @@
 import pandas as pd
+
 from src import quality_checks
+
+
+def drop_duplicates(df):
+    return df.drop_duplicates(keep="first", inplace=False)
+
 
 def merge(df1, df2, column_name):
     return pd.merge(df1, df2, on=column_name, how="inner")
@@ -27,5 +33,5 @@ def add_column_valid_email(df, column_name):
 
 
 def calc_cost_per_km(df, column_name):
-    #TODO
-    return None
+    # TODO
+    pass

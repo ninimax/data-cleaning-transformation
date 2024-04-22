@@ -5,7 +5,7 @@ import json
 import os
 
 import ingestion
-from src import logger, quality_checks
+from src import logger, quality_checks, processing
 
 app_logger = logger.create_logger(logger.LoggerType.APPLICATION)
 dq_logger = logger.create_logger(logger.LoggerType.DATA_QUALITY)
@@ -19,15 +19,11 @@ def run():
 
     fleet, maintenance = data_ingestion().values()
 
-    log_duplicates(fleet)
-    log_duplicates(maintenance)
+    data_quality_assessment(fleet, maintenance)
 
-    log_missing_vals(fleet)
-    log_missing_vals(maintenance)
+    processed_fleet, processed_maintenance = data_cleaning_and_transformation(fleet, maintenance)
 
-    log_missing_fleet_truck_ids(maintenance, fleet)
-
-    data_transformation()
+    merged_fleet_maintenance = data_integration(processed_fleet, processed_maintenance)
 
     app_logger.info("Program finished")
 
@@ -53,6 +49,16 @@ def load_json(file_path):
     return data
 
 
+def data_quality_assessment(fleet, maintenance):
+    log_duplicates(fleet)
+    log_duplicates(maintenance)
+
+    log_missing_vals(fleet)
+    log_missing_vals(maintenance)
+
+    log_missing_fleet_truck_ids(maintenance, fleet)
+
+
 def log_duplicates(df):
     nbr_of_duplicates = quality_checks.count_full_duplicates(df)
     dq_logger.info(f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
@@ -72,8 +78,27 @@ def log_missing_fleet_truck_ids(df1, df2):
     dq_logger.info(f"Truck IDs missing from the fleet dataset: {', '.join(map(str, ids_only_in_df1_but_not_df2))}")
 
 
-def data_transformation():
-    return None
+def data_cleaning_and_transformation(fleet, maintenance):
+    processed_fleet = (fleet.
+                       pipe(processing.drop_duplicates).
+                       pipe(processing.standardize_dates, column_name="purchase_date"))
+
+    processed_maintenance = (maintenance.
+                             pipe(processing.drop_duplicates).
+                             pipe(processing.standardize_dates, column_name="maintenance_date").
+                             pipe(processing.standardize_text, column_name="service_type").
+                             pipe(processing.encode_one_hot, column_name="service_type").
+                             pipe(processing.add_column_valid_email, column_name="technician_email"))
+
+    return {
+        "fleet": processed_fleet,
+        "maintenance": processed_maintenance
+    }
+
+
+def data_integration(fleet, maintenance):
+    merged_fleet_maintenance = processing.merge(fleet, maintenance, "truck_id")
+    return merged_fleet_maintenance
 
 
 if __name__ == "__main__":

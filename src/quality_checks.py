@@ -1,5 +1,7 @@
 import re
 
+import pandas as pd
+
 
 def count_full_duplicates(df):
     return df.duplicated(keep=False).sum()
@@ -18,5 +20,7 @@ def get_items_existing_in_df1_only(df1, df2, column_name):
 
 
 def validate_email(email):
+    if email is None or email == pd.NA:
+        return False
     regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"
     return bool(re.match(regex, email))
