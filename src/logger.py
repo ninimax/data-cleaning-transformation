@@ -1,6 +1,7 @@
 import logging
 import logging.config
 import os
+import sys
 from enum import Enum
 
 from dotenv import find_dotenv, load_dotenv
@@ -18,7 +19,8 @@ class LoggerType(Enum):
 
 
 def get_logger(name, logger_type):
-    log_configs = {"dev": "logging.dev.ini", "prod": "logging.prod.ini"}
+    sys.tracebacklimit = 0 # so no stack trace is presented
+    log_configs = {"DEV": "logging.dev.ini", "PROD": "logging.prod.ini"}
     config = log_configs.get(os.environ["ENV"], "logging.dev.ini")
     config_path = "/".join([CONFIG_DIR, config])
 
@@ -26,7 +28,7 @@ def get_logger(name, logger_type):
         config_path,
         disable_existing_loggers=False,
         defaults={
-            "logfilename": f"{LOG_DIR}/{'application' if logger_type == LoggerType.APPLICATION else 'data_quality'}.log"},
+            "logfilename": f"{LOG_DIR}/{'application_errors' if logger_type == LoggerType.APPLICATION else 'data_quality'}.log"},
     )
 
     return logging.getLogger(name)

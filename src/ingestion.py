@@ -6,5 +6,6 @@ dq_logger = get_logger(__name__, LoggerType.DATA_QUALITY)
 
 
 def read_data(path):
-    app_logger.info(f"loaded {path}")
-    return pd.read_csv(path)
+    data = pd.read_csv(path)
+    app_logger.debug(f"successfully loaded {path}")
+    return data
