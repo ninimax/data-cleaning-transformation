@@ -1,8 +1,8 @@
+import unittest
+
 import pandas as pd
 
 from src import quality_checks
-
-import unittest
 
 
 class TestQualityChecks(unittest.TestCase):
@@ -21,7 +21,7 @@ class TestQualityChecks(unittest.TestCase):
 
     def test_get_id_existing_in_df1_only(self):
         test_input = pd.DataFrame({'Name': ['A', 'B', 'B', 'B', 'C'], 'ID': [1, 2, 2, 22, 3]})
-        actual = quality_checks.get_id_existing_in_df1_only(test_input,test_input)
+        actual = quality_checks.get_id_existing_in_df1_only(test_input, test_input)
         expected = 2
         self.assertEqual(actual, expected)
 

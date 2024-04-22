@@ -14,5 +14,5 @@ def get_id_existing_in_df1_only(df1, df2):
 
 
 def validate_email(email):
-    regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"
     return re.match(regex, email)

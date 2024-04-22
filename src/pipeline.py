@@ -4,9 +4,9 @@ Main entry point of the program for data cleaning and transformation.
 import json
 
 import ingestion
-from logger import *
+from src import logger, quality_checks
 
-application_logger = get_logger(__name__, LoggerType.APPLICATION)
+application_logger = logger.get_logger(__name__, logger.LoggerType.APPLICATION)
 
 JSON_CONFIG_DIR = "../config/data_sources.json"
 
@@ -17,33 +17,35 @@ def load_json(file_path):
     return data
 
 
-def run():
-    fleet_information = None
-    maintenance_records = None
-
-    application_logger.info("Program started\n")
-
-    # read config
-    data_resources = load_json(JSON_CONFIG_DIR)
-
-    # data ingestion
-    application_logger.info("***START OF DATA INGESTION***")
+def data_ingestion(type):
     try:
-        fleet_information = ingestion.read_data(data_resources["fleet"]["path"])
-        maintenance_records = ingestion.read_data(data_resources["fleet"]["path"])
+        json_obj = load_json(JSON_CONFIG_DIR)
+        data_source_path = json_obj[type]["path"]
+        df = ingestion.read_as_dataframes(data_source_path)
+        return df
     except FileNotFoundError as e:
-        application_logger.exception(e)
-    application_logger.info("***END OF DATA INGESTION***\n")
+        application_logger.error(e)
 
-    # data cleaning
-    application_logger.info("***START OF DATA CLEANING***")
-    application_logger.info("***END OF DATA CLEANING***\n")
 
-    # data transformation
-    application_logger.info("***START OF DATA TRANSFORMATION***")
-    application_logger.info("***END OF DATA TRANSFORMATION***\n")
+def data_cleaning(df):
+    nbr_of_duplicates = quality_checks.count_full_duplicates(df)
 
-    application_logger.info("Program finished")
+    if nbr_of_duplicates >= 2:
+        application_logger.info(f"Duplicate records found for {df.info} data: {nbr_of_duplicates}")
+
+
+def data_transformation():
+    return None
+
+
+def run():
+    application_logger.info("Program started")
+
+    for data_source in ["fleet", "maintenance"]:
+        df = data_ingestion("fleet")
+        data_cleaning(df)
+        data_transformation()
+        application_logger.info("Program finished")
 
 
 if __name__ == "__main__":
