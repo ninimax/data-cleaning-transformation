@@ -6,7 +6,7 @@ def count_full_duplicates(df):
 
 
 def count_missing_val_per_col(df):
-    return [20, 30, 10]
+    return df.isna().sum()
 
 
 def get_id_existing_in_df1_only(df1, df2):

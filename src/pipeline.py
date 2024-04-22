@@ -7,20 +7,21 @@ import os
 import ingestion
 from src import logger, quality_checks
 
-application_logger = logger.get_logger(__name__, logger.LoggerType.APPLICATION)
+app_logger = logger.get_logger(__name__, logger.LoggerType.APPLICATION)
+dq_logger = logger.get_logger(__name__, logger.LoggerType.DATA_QUALITY)
 
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_CONFIG_DIR = f"{ROOT_PATH}/config/data_sources.json"
 
 
 def run():
-    application_logger.info("Program started")
+    app_logger.info("Program started")
     fleet, maintenance = data_ingestion().values()
     data_cleaning(fleet)
     data_cleaning(maintenance)
 
     data_transformation()
-    application_logger.info("Program finished")
+    app_logger.info("Program finished")
 
 
 def data_ingestion():
@@ -35,7 +36,7 @@ def data_ingestion():
             "maintenance": df_maintenance
         }
     except FileNotFoundError as e:
-        application_logger.error(e)
+        app_logger.error(e)
 
 
 def load_json(file_path):
@@ -46,9 +47,14 @@ def load_json(file_path):
 
 def data_cleaning(df):
     nbr_of_duplicates = quality_checks.count_full_duplicates(df)
+    dq_logger.info(f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
 
-    if nbr_of_duplicates >= 2:
-        application_logger.info(f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
+    counters = quality_checks.count_missing_val_per_col(df)
+    if not counters.empty:
+        dq_logger.info(f"Missing data in {df.name}:")
+        for key, value in counters.items():
+            if value > 0:
+                dq_logger.info(f"{key}: {value} missing values")
 
 
 def data_transformation():

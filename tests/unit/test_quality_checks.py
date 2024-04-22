@@ -16,8 +16,9 @@ class TestQualityChecks(unittest.TestCase):
     def test_count_missing_val_per_col(self):
         test_input = pd.DataFrame({'Name': ['A', pd.NA, pd.NA, pd.NA, 'C'], 'ID': [1, 2, 2, pd.NA, 3]})
         actual = quality_checks.count_missing_val_per_col(test_input)
-        expected = pd.Series([3, 2])
-        self.assertEqual(expected, actual)
+        expected = pd.Series({"Name": 3, "ID": 1})
+        self.assertEqual(expected["Name"], actual["Name"])
+        self.assertEqual(expected["ID"], actual["ID"])
 
     def test_get_id_existing_in_df1_only(self):
         test_input = pd.DataFrame({'Name': ['A', 'B', 'B', 'B', 'C'], 'ID': [1, 2, 2, 22, 3]})
