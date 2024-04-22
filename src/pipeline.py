@@ -19,12 +19,17 @@ def load_json(file_path):
     return data
 
 
-def data_ingestion(type):
+def data_ingestion():
     try:
         json_obj = load_json(JSON_CONFIG_DIR)
-        data_source_path = f"{ROOT_PATH}/{json_obj[type]["path"]}"
-        df = ingestion.read_as_dataframes(data_source_path)
-        return df
+        df_fleet = ingestion.read_as_dataframes(f"{ROOT_PATH}/{json_obj['fleet']["path"]}")
+        df_maintenance = ingestion.read_as_dataframes(f"{ROOT_PATH}/{json_obj['maintenance']["path"]}")
+        df_fleet.name = "fleet"
+        df_maintenance.name = "maintenance"
+        return {
+            "fleet": df_fleet,
+            "maintenance": df_maintenance
+        }
     except FileNotFoundError as e:
         application_logger.error(e)
 
@@ -33,7 +38,7 @@ def data_cleaning(df):
     nbr_of_duplicates = quality_checks.count_full_duplicates(df)
 
     if nbr_of_duplicates >= 2:
-        application_logger.info(f"Duplicate records found for {df.info} data: {nbr_of_duplicates}")
+        application_logger.info(f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
 
 
 def data_transformation():
@@ -42,12 +47,12 @@ def data_transformation():
 
 def run():
     application_logger.info("Program started")
+    fleet, maintenance = data_ingestion().values()
+    data_cleaning(fleet)
+    data_cleaning(maintenance)
 
-    for data_source in ["fleet", "maintenance"]:
-        df = data_ingestion("fleet")
-        data_cleaning(df)
-        data_transformation()
-        application_logger.info("Program finished")
+    data_transformation()
+    application_logger.info("Program finished")
 
 
 if __name__ == "__main__":
