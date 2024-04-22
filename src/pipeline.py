@@ -7,11 +7,11 @@ import os
 import ingestion
 from src import logger, quality_checks
 
-app_logger = logger.get_logger(__name__, logger.LoggerType.APPLICATION)
-dq_logger = logger.get_logger(__name__, logger.LoggerType.DATA_QUALITY)
+app_logger = logger.create_logger(logger.LoggerType.APPLICATION)
+dq_logger = logger.create_logger(logger.LoggerType.DATA_QUALITY)
 
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-JSON_CONFIG_DIR = f"{ROOT_PATH}/config/data_sources.json"
+JSON_CONFIG_DIR = f"{ROOT_PATH}/data_sources.json"
 
 
 def run():

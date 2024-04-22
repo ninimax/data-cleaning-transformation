@@ -13,18 +13,23 @@ ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class LoggerType(Enum):
-    APPLICATION = 1
-    DATA_QUALITY = 2
+    APPLICATION = "application_errors"
+    DATA_QUALITY = "data_quality"
 
 
-def get_logger(name, logger_type):
+def create_logger(logger_type):
     sys.tracebacklimit = 0  # so no stack trace is presented
-    config_path = f"{ROOT_PATH}/config/{"logging.dev.ini" if os.environ["ENV"] == "DEV" else "logging.prod.ini"}"
-    logging.config.fileConfig(
-        config_path,
-        disable_existing_loggers=False,
-        defaults={
-            "logfilename": f"{ROOT_PATH}/logs/{'application_errors' if logger_type == LoggerType.APPLICATION else 'data_quality'}.log"},
-    )
+    env = os.environ["env"]
 
-    return logging.getLogger(name)
+    log_level = logging.DEBUG if env == "dev" else logging.WARN
+    log_path = f"{ROOT_PATH}/logs/{logger_type.value}.log"
+    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+
+    logger = logging.getLogger(logger_type.name)
+    file_handler = logging.FileHandler(log_path, mode="w")
+    file_handler.setLevel(log_level)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+    logger.setLevel(log_level)
+
+    return logger
