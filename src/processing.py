@@ -1,5 +1,5 @@
 import pandas as pd
-
+from src import quality_checks
 
 def merge(df1, df2, column_name):
     return pd.merge(df1, df2, on=column_name, how="inner")
@@ -21,9 +21,11 @@ def encode_one_hot(df, column_name):
     return df_encoded
 
 
-def add_column(series):
-    return None
+def add_column_valid_email(df, column_name):
+    df["valid_email"] = df[column_name].apply(quality_checks.validate_email)
+    return df
 
 
-def validate(df):
+def calc_cost_per_km(df, column_name):
+    #TODO
     return None
