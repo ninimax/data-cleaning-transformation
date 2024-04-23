@@ -17,4 +17,4 @@ def get_items_existing_in_df1_only(df1, df2, column_name):
 
 def validate_email(email):
     regex = r"^[\w\.-]+@[\w\.-]+\.\w+$"
-    return bool(re.match(regex, email))
+    return bool(re.match(regex, str(email)))

@@ -16,18 +16,23 @@ JSON_CONFIG_DIR = f"{ROOT_PATH}/data_sources.json"
 def run():
     app_logger.info("Program started")
 
-    fleet, maintenance = data_ingestion().values()
+    try:
+        fleet, maintenance = data_ingestion().values()
 
-    data_quality_assessment(fleet, maintenance)
+        data_quality_assessment(fleet, maintenance)
 
-    processed_fleet, processed_maintenance = data_cleaning_transformation(
-        fleet,
-        maintenance)
+        processed_fleet, processed_maintenance = data_cleaning_transformation(
+            fleet,
+            maintenance).values()
 
-    merged_fleet_maintenance = data_integration(processed_fleet,
-                                                processed_maintenance)
+        merged_fleet_maintenance = data_integration(processed_fleet,
+                                                    processed_maintenance)
 
-    app_logger.info("Program finished")
+    except Exception as e:
+        app_logger.error(e)
+
+
+app_logger.info("Program finished")
 
 
 def data_ingestion():

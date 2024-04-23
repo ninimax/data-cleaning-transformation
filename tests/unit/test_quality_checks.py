@@ -51,8 +51,20 @@ class TestQualityChecks(unittest.TestCase):
         expected = True
         self.assertEqual(expected, actual)
 
-    def test_validate_email_fail(self):
+    def test_validate_email_fail_1(self):
         test_input = "ab.c"
+        actual = quality_checks.validate_email(test_input)
+        expected = False
+        self.assertEqual(expected, actual)
+
+    def test_validate_email_fail_2(self):
+        test_input = pd.NA
+        actual = quality_checks.validate_email(test_input)
+        expected = False
+        self.assertEqual(expected, actual)
+
+    def test_validate_email_fail_3(self):
+        test_input = None
         actual = quality_checks.validate_email(test_input)
         expected = False
         self.assertEqual(expected, actual)
