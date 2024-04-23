@@ -8,7 +8,7 @@ class TestPipeline(unittest.TestCase):
     def test_count_duplicates(self):
         actual = pipeline.run()
         expected = True
-        self.assertEqual(expected,actual)
+        self.assertEqual(expected, actual)
 
 
 if __name__ == "__main__":

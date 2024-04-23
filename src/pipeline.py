@@ -79,8 +79,9 @@ def log_missing_vals(df):
 
 
 def log_missing_fleet_truck_ids(df1, df2):
-    ids_only_in_df1_but_not_df2 = quality_checks.get_items_existing_in_df1_only(
-        df1, df2, "truck_id")
+    ids_only_in_df1_but_not_df2 = (
+        quality_checks.get_items_existing_in_df1_only(
+            df1, df2, "truck_id"))
     dq_logger.info(
         f"Truck IDs missing from the fleet dataset: "
         f"{', '.join(map(str, ids_only_in_df1_but_not_df2))}")
