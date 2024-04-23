@@ -17,7 +17,10 @@ def standardize_text(df, column_name):
 
 
 def standardize_dates(df, column_name):
-    df[column_name] = pd.to_datetime(df[column_name], format='%d-%m-%Y', errors='coerce', dayfirst=True)
+    df[column_name] = pd.to_datetime(df[column_name],
+                                     format='%d-%m-%Y',
+                                     errors='coerce',
+                                     dayfirst=True)
     return df
 
 

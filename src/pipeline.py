@@ -20,9 +20,12 @@ def run():
 
     data_quality_assessment(fleet, maintenance)
 
-    processed_fleet, processed_maintenance = data_cleaning_and_transformation(fleet, maintenance)
+    processed_fleet, processed_maintenance = data_cleaning_transformation(
+        fleet,
+        maintenance)
 
-    merged_fleet_maintenance = data_integration(processed_fleet, processed_maintenance)
+    merged_fleet_maintenance = data_integration(processed_fleet,
+                                                processed_maintenance)
 
     app_logger.info("Program finished")
 
@@ -30,8 +33,10 @@ def run():
 def data_ingestion():
     try:
         json_obj = load_json(JSON_CONFIG_DIR)
-        df_fleet = ingestion.read_as_dataframes(f"{ROOT_PATH}/{json_obj['fleet']["path"]}")
-        df_maintenance = ingestion.read_as_dataframes(f"{ROOT_PATH}/{json_obj['maintenance']["path"]}")
+        df_fleet = ingestion.read_as_dataframes(
+            f"{ROOT_PATH}/{json_obj['fleet']["path"]}")
+        df_maintenance = ingestion.read_as_dataframes(
+            f"{ROOT_PATH}/{json_obj['maintenance']["path"]}")
         df_fleet.name = "fleet"
         df_maintenance.name = "maintenance"
         return {
@@ -60,7 +65,8 @@ def data_quality_assessment(fleet, maintenance):
 
 def log_duplicates(df):
     nbr_of_duplicates = quality_checks.count_full_duplicates(df)
-    dq_logger.info(f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
+    dq_logger.info(
+        f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
 
 
 def log_missing_vals(df):
@@ -73,21 +79,29 @@ def log_missing_vals(df):
 
 
 def log_missing_fleet_truck_ids(df1, df2):
-    ids_only_in_df1_but_not_df2 = quality_checks.get_items_existing_in_df1_only(df1, df2, "truck_id")
-    dq_logger.info(f"Truck IDs missing from the fleet dataset: {', '.join(map(str, ids_only_in_df1_but_not_df2))}")
+    ids_only_in_df1_but_not_df2 = quality_checks.get_items_existing_in_df1_only(
+        df1, df2, "truck_id")
+    dq_logger.info(
+        f"Truck IDs missing from the fleet dataset: "
+        f"{', '.join(map(str, ids_only_in_df1_but_not_df2))}")
 
 
-def data_cleaning_and_transformation(fleet, maintenance):
+def data_cleaning_transformation(fleet, maintenance):
     processed_fleet = (fleet.
                        pipe(processing.drop_duplicates).
-                       pipe(processing.standardize_dates, column_name="purchase_date"))
+                       pipe(processing.standardize_dates,
+                            column_name="purchase_date"))
 
     processed_maintenance = (maintenance.
                              pipe(processing.drop_duplicates).
-                             pipe(processing.standardize_dates, column_name="maintenance_date").
-                             pipe(processing.standardize_text, column_name="service_type").
-                             pipe(processing.encode_one_hot, column_name="service_type").
-                             pipe(processing.add_column_valid_email, column_name="technician_email"))
+                             pipe(processing.standardize_dates,
+                                  column_name="maintenance_date").
+                             pipe(processing.standardize_text,
+                                  column_name="service_type").
+                             pipe(processing.encode_one_hot,
+                                  column_name="service_type").
+                             pipe(processing.add_column_valid_email,
+                                  column_name="technician_email"))
 
     return {
         "fleet": processed_fleet,
@@ -96,7 +110,10 @@ def data_cleaning_and_transformation(fleet, maintenance):
 
 
 def data_integration(fleet, maintenance):
-    merged_fleet_maintenance = processing.merge(fleet, maintenance, "truck_id")
+    merged_fleet_maintenance = processing.merge(
+        fleet,
+        maintenance,
+        "truck_id")
     return merged_fleet_maintenance
 
 
