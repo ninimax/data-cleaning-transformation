@@ -28,6 +28,7 @@ def run():
         merged_fleet_maintenance = data_integration(processed_fleet,
                                                     processed_maintenance)
 
+        processing.export_to_csv(merged_fleet_maintenance)
     except Exception as e:
         app_logger.error(e)
 
@@ -70,24 +71,24 @@ def data_quality_assessment(fleet, maintenance):
 
 def log_duplicates(df):
     nbr_of_duplicates = quality_checks.count_full_duplicates(df)
-    dq_logger.info(
+    dq_logger.warning(
         f"Duplicate records found for {df.name} data: {nbr_of_duplicates}")
 
 
 def log_missing_vals(df):
     counters = quality_checks.count_missing_val_per_col(df)
     if not counters.empty:
-        dq_logger.info(f"Missing data in {df.name}:")
+        dq_logger.warning(f"Missing data in {df.name}:")
         for key, value in counters.items():
             if value > 0:
-                dq_logger.info(f"   {key}: {value} missing values")
+                dq_logger.warning(f"   {key}: {value} missing values")
 
 
 def log_missing_fleet_truck_ids(df1, df2):
     ids_only_in_df1_but_not_df2 = (
         quality_checks.get_items_existing_in_df1_only(
             df1, df2, "truck_id"))
-    dq_logger.info(
+    dq_logger.warning(
         f"Truck IDs missing from the fleet dataset: "
         f"{', '.join(map(str, ids_only_in_df1_but_not_df2))}")
 

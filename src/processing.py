@@ -1,7 +1,12 @@
+import os
+
 import pandas as pd
+
 pd.options.mode.chained_assignment = None  # default='warn'
 
 from src import quality_checks
+
+ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def drop_duplicates(df):
@@ -39,3 +44,7 @@ def add_column_valid_email(df, column_name):
 def calc_cost_per_km(df, column_name):
     # TODO
     pass
+
+
+def export_to_csv(df):
+    df.to_csv(f"{ROOT_PATH}/data/actual_fleet_maintenance_MERGED.csv", index=False)
