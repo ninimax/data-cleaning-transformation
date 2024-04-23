@@ -4,8 +4,7 @@ Main entry point of the program for data cleaning and transformation.
 import json
 import os
 
-import ingestion
-from src import logger, quality_checks, processing
+from src import ingestion, logger, quality_checks, processing
 
 app_logger = logger.create_logger(logger.LoggerType.APPLICATION)
 dq_logger = logger.create_logger(logger.LoggerType.DATA_QUALITY)
