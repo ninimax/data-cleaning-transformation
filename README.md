@@ -41,7 +41,7 @@ A pipeline app for data cleaning and transformation based on the requirements
   therefore you may not find too many comments unless absolutely needed)
 - PEP8
 - Dotenv
-- Generic parameterized functions, e.g., param "column_name" gives reusability 
+- Generic parameterized functions, e.g., param "column_name" gives reusability
 
 ### REFLECTION
 
@@ -51,7 +51,9 @@ A pipeline app for data cleaning and transformation based on the requirements
   handlers, formatters etc.
 - Handling missing values can sometimes be tricky and may need to use str() first,
   especially for null, NaT, NaN etc.
-- While exporting pandas DataFrame to csv, the NaTs will be automatically converted to NaN to support csv. 
+- While exporting pandas DataFrame to csv, the NaTs will be automatically converted to NaN to support csv.
   Good to keep that in mind.
+- Calculation of maintenance cost per kilometer is prerequisite with high data quality., see comment in that function
+  for details.
 - The command "pytest" did not work for automatically detection of all test cases and therefore
   I use command "python -m unittest discover -s [path]" instead

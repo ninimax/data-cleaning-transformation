@@ -42,7 +42,21 @@ def add_column_email_valid(df, column_name):
 
 
 def calc_cost_per_km(df, column_name):
-    # TODO
+    """#
+    I was about to implement it but then I found out that, it seems to be more
+    complex than it looks like with first glance, since the data quality is
+    not ensured to begin with...
+    e.g.
+    TRK001,15-06-2023,122181
+    TRK001,06-07-2023,195456
+    TRK001,23-09-2023,49353
+    TRK001,28-10-2023,80467
+
+    The mileage of truck with id TRK001
+    is reduced from 195456(06-07-2023) to 49353 (23-09-2023).
+    That is logically wrong and would need to confirm with the source provider
+    TODO
+    """
     pass
 
 
