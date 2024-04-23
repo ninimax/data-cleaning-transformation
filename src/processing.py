@@ -2,8 +2,9 @@ import os
 
 import pandas as pd
 
-from src import quality_checks
+from src import quality_checks, logger
 
+app_logger = logger.create_logger(logger.LoggerType.APPLICATION)
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -47,3 +48,12 @@ def calc_cost_per_km(df, column_name):
 
 def export_to_csv(df, path):
     df.to_csv(path, index=False)
+
+
+def delete_file(path):
+    if os.path.exists(path) and os.path.isfile(path):
+        os.remove(path)
+        app_logger.info(
+            f"already existing a file, file deleted, path: {path}")
+    else:
+        app_logger.error(f"file not found, path: {path}")

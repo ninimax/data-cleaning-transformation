@@ -52,12 +52,13 @@ def run(fleet_data_path, maintenance_data_path, export_file_path):
         merged_fleet_maintenance = data_integration(processed_fleet,
                                                     processed_maintenance)
 
+        processing.delete_file(export_file_path)
         processing.export_to_csv(
             merged_fleet_maintenance,
             export_file_path)
 
         app_logger.info(
-            f"Data cleaning and transformation completed. Exported to file:\n"
+            f"data cleaning and transformation completed. Exported to file:\n"
             f"{export_file_path}")
     except Exception as e:
         app_logger.error(e)
