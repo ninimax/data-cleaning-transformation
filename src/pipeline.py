@@ -14,6 +14,24 @@ JSON_CONFIG_DIR = f"{ROOT_PATH}/data_sources.json"
 
 
 def run():
+    """
+    The program runs and does the follows:
+    1) data ingestion:
+        read csv files of fleet and maintenance based on the
+        configurations defined in data_sources.json.
+    2) data quality assessment:
+        check and log for duplicated rows, missing values, and truck_id
+        present in the maintenance dataset but not in the fleet dataset.
+    3) data cleaning and transformation:
+        drop fully duplicated rows,
+        standardize text and dates of selected columns,
+        apply one-hot encoding on service_type,
+        add column email_valid for rows with valid technician_email address.
+    4) data integration:
+        merge the cleaned and processed fleet and maintenance dataframe into
+        one and export as a csv file actual_fleet_maintenance_MERGED.csv
+    """
+
     app_logger.info("Program started")
 
     try:
@@ -105,7 +123,7 @@ def data_cleaning_transformation(fleet, maintenance):
                              pipe(processing.drop_duplicates).
                              pipe(processing.standardize_dates,
                                   column_name="maintenance_date").
-                             pipe(processing.standardize_text,
+                             pipe(processing.standardize_text_lower_stripped,
                                   column_name="service_type").
                              pipe(processing.encode_one_hot,
                                   column_name="service_type").

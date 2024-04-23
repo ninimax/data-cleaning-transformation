@@ -2,9 +2,9 @@ import os
 
 import pandas as pd
 
-pd.options.mode.chained_assignment = None  # default='warn'
-
 from src import quality_checks
+
+pd.options.mode.chained_assignment = None  # default='warn'
 
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -17,7 +17,7 @@ def merge(df1, df2, column_name):
     return pd.merge(df1, df2, on=column_name, how="inner")
 
 
-def standardize_text(df, column_name):
+def standardize_text_lower_stripped(df, column_name):
     df[column_name] = df[column_name].str.lower().str.strip()
     return df
 

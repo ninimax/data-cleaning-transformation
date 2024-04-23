@@ -35,7 +35,7 @@ class TestProcessing(unittest.TestCase):
                 "name": [" A", "B ", "BB", " C "],
                 "id": [1, 2, 22, 3]
             })
-        actual = processing.standardize_text(test_input, "name")
+        actual = processing.standardize_text_lower_stripped(test_input, "name")
         expected = pd.DataFrame(
             {
                 "name": ["a", "b", "bb", "c"],
