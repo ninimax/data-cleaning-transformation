@@ -31,15 +31,15 @@ class TestProcessing(unittest.TestCase):
         assert_frame_equal(expected, actual)
 
     def test_encode_one_hot(self):
-        test_input = pd.DataFrame({"type": ["Maintenance", "Inspection", pd.NA, "Inspection", "Repair"],
+        test_input = pd.DataFrame({"type": ["maintenance", "inspection", pd.NA, "inspection", "repair"],
                                    "id": [1, 2, 3, 4, 5]
                                    })
         actual = processing.encode_one_hot(test_input, "type")
-        expected = pd.DataFrame({"type": ["Maintenance", "Inspection", pd.NA, "Inspection", "Repair"],
+        expected = pd.DataFrame({"type": ["maintenance", "inspection", pd.NA, "inspection", "repair"],
                                  "id": [1, 2, 3, 4, 5],
-                                 "Inspection": [False, True, False, True, False],
-                                 "Maintenance": [True, False, False, False, False],
-                                 "Repair": [False, False, False, False, True]
+                                 "inspection": [False, True, False, True, False],
+                                 "maintenance": [True, False, False, False, False],
+                                 "repair": [False, False, False, False, True]
                                  })
         assert_frame_equal(expected, actual)
 
