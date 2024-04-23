@@ -55,5 +55,6 @@ A pipeline app for data cleaning and transformation based on the requirements
   Good to keep that in mind.
 - Calculation of maintenance cost per kilometer is prerequisite with high data quality., see comment in that function
   for details.
-- The command "pytest" did not work for automatically detection of all test cases and therefore
+- I count full duplications, e.g., [1,1,2,3,3] will give a count of duplications 4
+- The command "pytest" did not work for automatically detection of all test cases, and therefore
   I use command "python -m unittest discover -s [path]" instead
