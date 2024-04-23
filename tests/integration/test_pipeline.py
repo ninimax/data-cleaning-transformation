@@ -24,6 +24,8 @@ class TestPipeline(unittest.TestCase):
         except Exception as e:
             raise AssertionError(f"Export file should be found, but: {e}")
 
+        # NOTE! While exporting pandas DataFrame to csv,
+        # the NaTs will be automatically converted to NaN to support csv.
         self.assertEqual("DUMMY001", exported_df["truck_id"][0])
         self.assertEqual("nan", str(exported_df["purchase_date"][0]))
         self.assertEqual(False, exported_df["service_type_inspection"][0])
