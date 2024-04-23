@@ -1,0 +1,14 @@
+2024-04-23 17:31:48,958 - WARNING - Duplicate records found for fleet data: 6
+2024-04-23 17:31:48,959 - WARNING - Duplicate records found for maintenance data: 8
+2024-04-23 17:31:48,959 - WARNING - Missing data in fleet:
+2024-04-23 17:31:48,959 - WARNING -    truck_id: 1 missing values
+2024-04-23 17:31:48,959 - WARNING -    purchase_date: 2 missing values
+2024-04-23 17:31:48,959 - WARNING -    purchase_cost: 2 missing values
+2024-04-23 17:31:48,959 - WARNING -    initial_milage: 3 missing values
+2024-04-23 17:31:48,959 - WARNING - Missing data in maintenance:
+2024-04-23 17:31:48,959 - WARNING -    truck_id: 2 missing values
+2024-04-23 17:31:48,959 - WARNING -    maintenance_date: 1 missing values
+2024-04-23 17:31:48,959 - WARNING -    service_type: 14 missing values
+2024-04-23 17:31:48,959 - WARNING -    service_center: 11 missing values
+2024-04-23 17:31:48,959 - WARNING -    technician_email: 12 missing values
+2024-04-23 17:31:48,960 - WARNING - Truck IDs missing from the fleet dataset: TRK012, TRKXX1, TRKXX2

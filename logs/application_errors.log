@@ -1,0 +1,5 @@
+2024-04-23 17:31:48,952 - INFO - Program finished
+2024-04-23 17:31:48,953 - INFO - Program started
+2024-04-23 17:31:48,965 - INFO - already existing a file, file deleted, path: /Users/shuangzheng/PycharmProjects/data-cleaning-transformation/data/generated/actual_fleet_maintenance_MERGED.csv
+2024-04-23 17:31:48,967 - INFO - data cleaning and transformation completed. Exported to file:
+/Users/shuangzheng/PycharmProjects/data-cleaning-transformation/data/generated/actual_fleet_maintenance_MERGED.csv
