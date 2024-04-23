@@ -1,0 +1,5 @@
+truck_id,model,purchase_date,purchase_cost,initial_milage,maintenance_date,milage,maintenance_cost,service_center,technician_email,service_type_inspection,service_type_maintenance,service_type_repair,email_valid
+DUMMY001,Quantum Cruiser,,44699.26,8838.0,,147848,1710.08,Center C,tech2@sample,False,False,True,False
+DUMMY002,Titan Trekker,2023-07-29,44466.13,14502.0,2022-01-01,102787,1635.99,,tech3@example.com,True,False,False,True
+DUMMY003,Titan Trekker,,20282.65,10627.0,2023-12-31,193734,1239.98,Center B,,True,False,False,False
+DUMMY003,Titan Trekker,,20282.65,10627.0,2024-01-02,23545,2701.62,Center A,example,False,True,False,False

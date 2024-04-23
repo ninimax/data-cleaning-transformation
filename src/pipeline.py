@@ -4,6 +4,11 @@ Main entry point of the program for data cleaning and transformation.
 import json
 import os
 
+import pandas as pd
+
+# disable warnings while using pipe(), default='warn'
+pd.options.mode.chained_assignment = None
+
 from src import ingestion, logger, quality_checks, processing
 
 app_logger = logger.create_logger(logger.LoggerType.APPLICATION)
@@ -13,7 +18,7 @@ ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_CONFIG_DIR = f"{ROOT_PATH}/data_sources.json"
 
 
-def run():
+def run(fleet_data_path, maintenance_data_path, export_file_path):
     """
     The program runs and does the follows:
     1) data ingestion:
@@ -35,7 +40,8 @@ def run():
     app_logger.info("Program started")
 
     try:
-        fleet, maintenance = data_ingestion().values()
+        fleet, maintenance = data_ingestion(fleet_data_path,
+                                            maintenance_data_path).values()
 
         data_quality_assessment(fleet, maintenance)
 
@@ -48,7 +54,11 @@ def run():
 
         processing.export_to_csv(
             merged_fleet_maintenance,
-            f"{ROOT_PATH}/data/actual_fleet_maintenance_MERGED.csv")
+            export_file_path)
+
+        app_logger.info(
+            f"Data cleaning and transformation completed. Exported to file:\n"
+            f"{export_file_path}")
     except Exception as e:
         app_logger.error(e)
 
@@ -56,13 +66,11 @@ def run():
 app_logger.info("Program finished")
 
 
-def data_ingestion():
+def data_ingestion(fleet_data_path, maintenance_data_path):
     try:
-        json_obj = load_json(JSON_CONFIG_DIR)
-        df_fleet = ingestion.read_as_dataframes(
-            f"{ROOT_PATH}/{json_obj['fleet']["path"]}")
-        df_maintenance = ingestion.read_as_dataframes(
-            f"{ROOT_PATH}/{json_obj['maintenance']["path"]}")
+        df_fleet = ingestion.read_csv_as_dataframes(fleet_data_path)
+        df_maintenance = ingestion.read_csv_as_dataframes(
+            maintenance_data_path)
         df_fleet.name = "fleet"
         df_maintenance.name = "maintenance"
         return {
@@ -145,4 +153,8 @@ def data_integration(fleet, maintenance):
 
 
 if __name__ == "__main__":
-    run()
+    json_obj = load_json(JSON_CONFIG_DIR)
+    fleet_data_path = f"{ROOT_PATH}{json_obj['fleet']["path"]}"
+    maintenance_data_path = f"{ROOT_PATH}{json_obj['maintenance']["path"]}"
+    export_file_path = f"{ROOT_PATH}{json_obj['export']["path"]}"
+    run(fleet_data_path, maintenance_data_path, export_file_path)

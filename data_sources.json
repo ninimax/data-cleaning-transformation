@@ -2,11 +2,16 @@
   "maintenance": {
     "name": "Maintenance Records",
     "type": "maintenance",
-    "path": "/data/maintenance_records.csv"
+    "path": "/data/original/maintenance_records.csv"
   },
   "fleet": {
     "name": "Fleet Information",
     "type": "fleet",
-    "path": "/data/fleet_information.csv"
+    "path": "/data/original/fleet_information.csv"
+  },
+  "export": {
+    "name": "Exported File",
+    "type": "export",
+    "path": "/data/generated/actual_fleet_maintenance_MERGED.csv"
   }
 }

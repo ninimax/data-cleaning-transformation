@@ -4,8 +4,6 @@ import pandas as pd
 
 from src import quality_checks
 
-pd.options.mode.chained_assignment = None  # default='warn'
-
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 

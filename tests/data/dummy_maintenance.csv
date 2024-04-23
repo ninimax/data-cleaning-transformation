@@ -1,0 +1,7 @@
+truck_id,maintenance_date,milage,service_type,maintenance_cost,service_center,technician_email
+DUMMY001,30-02-2022,147848,RePAir,1710.08,Center C,tech2@sample
+DUMMY002,01-01-2022,102787,inspection,1635.99,nan,tech3@example.com
+,12-12-2023,175838,  Maintenance ,2361.64,Center C,
+DUMMY003,31-12-2023,193734,Inspection,1239.98,Center B,
+DUMMY003,02-01-2024,23545,  Maintenance ,2701.62,Center A,example
+DUMMY003,02-01-2024,23545,  Maintenance ,2701.62,Center A,example

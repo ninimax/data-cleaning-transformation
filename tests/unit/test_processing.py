@@ -29,7 +29,7 @@ class TestProcessing(unittest.TestCase):
 
         assert_frame_equal(expected, actual)
 
-    def test_standardize_text(self):
+    def test_standardize_text_lower_stripped(self):
         test_input = pd.DataFrame(
             {
                 "name": [" A", "B ", "BB", " C "],
@@ -78,9 +78,9 @@ class TestProcessing(unittest.TestCase):
         expected = pd.DataFrame(
             {
                 "id": [1, 2, 3, 4, 5],
-                "inspection": [False, True, False, True, False],
-                "maintenance": [True, False, False, False, False],
-                "repair": [False, False, False, False, True]
+                "type_inspection": [False, True, False, True, False],
+                "type_maintenance": [True, False, False, False, False],
+                "type_repair": [False, False, False, False, True]
             })
         assert_frame_equal(expected, actual)
 
