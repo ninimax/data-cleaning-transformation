@@ -77,12 +77,6 @@ class TestProcessing(unittest.TestCase):
         actual = processing.encode_one_hot(test_input, "type")
         expected = pd.DataFrame(
             {
-                "type": [
-                    "maintenance",
-                    "inspection",
-                    pd.NA,
-                    "inspection",
-                    "repair"],
                 "id": [1, 2, 3, 4, 5],
                 "inspection": [False, True, False, True, False],
                 "maintenance": [True, False, False, False, False],

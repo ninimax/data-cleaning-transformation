@@ -33,6 +33,7 @@ def standardize_dates(df, column_name):
 def encode_one_hot(df, column_name):
     one_hot_encoded = pd.get_dummies(df[column_name])
     df_encoded = pd.concat([df, one_hot_encoded], axis=1)
+    df_encoded.drop(column_name, axis=1, inplace=True)
     return df_encoded
 
 
@@ -46,5 +47,5 @@ def calc_cost_per_km(df, column_name):
     pass
 
 
-def export_to_csv(df):
-    df.to_csv(f"{ROOT_PATH}/data/actual_fleet_maintenance_MERGED.csv", index=False)
+def export_to_csv(df, path):
+    df.to_csv(path,index=False)
