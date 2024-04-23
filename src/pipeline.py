@@ -108,7 +108,7 @@ def data_cleaning_transformation(fleet, maintenance):
                                   column_name="service_type").
                              pipe(processing.encode_one_hot,
                                   column_name="service_type").
-                             pipe(processing.add_column_valid_email,
+                             pipe(processing.add_column_email_valid,
                                   column_name="technician_email"))
 
     return {

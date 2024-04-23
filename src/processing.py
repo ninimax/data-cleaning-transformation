@@ -31,14 +31,14 @@ def standardize_dates(df, column_name):
 
 
 def encode_one_hot(df, column_name):
-    one_hot_encoded = pd.get_dummies(df[column_name])
+    one_hot_encoded = pd.get_dummies(df[column_name], prefix=column_name)
     df_encoded = pd.concat([df, one_hot_encoded], axis=1)
     df_encoded.drop(column_name, axis=1, inplace=True)
     return df_encoded
 
 
-def add_column_valid_email(df, column_name):
-    df["valid_email"] = df[column_name].apply(quality_checks.validate_email)
+def add_column_email_valid(df, column_name):
+    df["email_valid"] = df[column_name].apply(quality_checks.validate_email)
     return df
 
 
@@ -48,4 +48,4 @@ def calc_cost_per_km(df, column_name):
 
 
 def export_to_csv(df, path):
-    df.to_csv(path,index=False)
+    df.to_csv(path, index=False)

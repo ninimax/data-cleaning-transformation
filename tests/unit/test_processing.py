@@ -84,18 +84,18 @@ class TestProcessing(unittest.TestCase):
             })
         assert_frame_equal(expected, actual)
 
-    def test_add_column_valid_email(self):
+    def test_add_column_email_valid(self):
         test_input = pd.DataFrame(
             {
                 "email": ["a/b.com", "a@b.c", "123", "aa@bb.cc", "blabla"],
                 "id": [1, 2, 3, 4, 5]
             })
-        actual = processing.add_column_valid_email(test_input, "email")
+        actual = processing.add_column_email_valid(test_input, "email")
         expected = pd.DataFrame(
             {
                 "email": ["a/b.com", "a@b.c", "123", "aa@bb.cc", "blabla"],
                 "id": [1, 2, 3, 4, 5],
-                "valid_email": [False, True, False, True, False]
+                "email_valid": [False, True, False, True, False]
             })
         assert_frame_equal(expected, actual)
 
