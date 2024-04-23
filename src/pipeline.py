@@ -28,8 +28,9 @@ def run():
         merged_fleet_maintenance = data_integration(processed_fleet,
                                                     processed_maintenance)
 
-        processing.export_to_csv(merged_fleet_maintenance,
-                                 f"{ROOT_PATH}/data/actual_fleet_maintenance_MERGED.csv")
+        processing.export_to_csv(
+            merged_fleet_maintenance,
+            f"{ROOT_PATH}/data/actual_fleet_maintenance_MERGED.csv")
     except Exception as e:
         app_logger.error(e)
 
