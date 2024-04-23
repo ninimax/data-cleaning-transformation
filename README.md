@@ -51,5 +51,7 @@ A pipeline app for data cleaning and transformation based on the requirements
   handlers, formatters etc.
 - Handling missing values can sometimes be tricky and may need to use str() first,
   especially for null, NaT, NaN etc.
+- While exporting pandas DataFrame to csv, the NaTs will be automatically converted to NaN to support csv. 
+  Good to keep that in mind.
 - The command "pytest" did not work for automatically detection of all test cases and therefore
   I use command "python -m unittest discover -s [path]" instead
