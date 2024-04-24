@@ -52,9 +52,9 @@ A pipeline app for data cleaning and transformation based on the requirements
 - Handling missing values can sometimes be tricky and may need to use str() first,
   especially for null, NaT, NaN etc.
 - While exporting pandas DataFrame to csv, the NaTs will be automatically converted to NaN to support csv.
-  Good to keep that in mind.
-- Calculation of maintenance cost per kilometer is prerequisite with high data quality., see comment in that function
-  for details.
-- I count full duplications, e.g., [1,1,2,3,3] will give a count of duplications 4
+  Good to keep that in mind. I noticed that during TDD.
+- In order to do the calculation of maintenance cost per kilometer, high data quality is a prerequisite.
+  See comment in that function in processing.py for details.
+- I count full duplications, e.g., [1,1,2,3,3] will give a count of duplications 4.
 - The command "pytest" did not work for automatically detection of all test cases, and therefore
-  I use command "python -m unittest discover -s [path]" instead
+  I use command "python -m unittest discover -s [path]" instead.

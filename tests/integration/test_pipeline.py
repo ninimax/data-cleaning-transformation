@@ -11,7 +11,7 @@ ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 class TestPipeline(unittest.TestCase):
 
     def test_run(self):
-        export_file_path = f"{ROOT_PATH}/data/export.csv"
+        export_file_path = f"{ROOT_PATH}/data/dummy_export.csv"
         pipeline.run(
             f"{ROOT_PATH}/data/dummy_fleet.csv",
             f"{ROOT_PATH}/data/dummy_maintenance.csv",
