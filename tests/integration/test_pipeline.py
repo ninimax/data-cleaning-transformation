@@ -17,15 +17,13 @@ class TestPipeline(unittest.TestCase):
             f"{ROOT_PATH}/data/dummy_maintenance.csv",
             export_file_path)
 
-        exported_df = None
-
         try:
             exported_df = pd.read_csv(export_file_path)
         except Exception as e:
             raise AssertionError(f"Export file should be found, but: {e}")
 
         # NOTE! While exporting pandas DataFrame to csv,
-        # the NaTs will be automatically converted to NaN to support csv.
+        # NaTs are automatically converted to NaNs to support csv.
         self.assertEqual("DUMMY001", exported_df["truck_id"][0])
         self.assertEqual("nan", str(exported_df["purchase_date"][0]))
         self.assertEqual(False, exported_df["service_type_inspection"][0])
@@ -34,7 +32,8 @@ class TestPipeline(unittest.TestCase):
         self.assertEqual(False, exported_df["email_valid"][0])
 
         self.assertEqual("DUMMY002", exported_df["truck_id"][1])
-        self.assertEqual("2023-07-29", str(exported_df["purchase_date"][1]))
+        self.assertEqual(pd.to_datetime("29-07-2023"),
+                         pd.to_datetime(exported_df["purchase_date"][1]))
         self.assertEqual(True, exported_df["service_type_inspection"][1])
         self.assertEqual(False, exported_df["service_type_maintenance"][1])
         self.assertEqual(False, exported_df["service_type_repair"][1])

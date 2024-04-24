@@ -51,7 +51,7 @@ A pipeline app for data cleaning and transformation based on the requirements
   handlers, formatters etc.
 - Handling missing values can sometimes be tricky and may need to use str() first,
   especially for null, NaT, NaN etc.
-- While exporting pandas DataFrame to csv, the NaTs will be automatically converted to NaN to support csv.
+- While exporting pandas DataFrame to csv, NaTs are automatically converted to NaNs to support csv.
   Good to keep that in mind. I noticed that during TDD.
 - In order to do the calculation of maintenance cost per kilometer, high data quality is a prerequisite.
   See comment in that function in processing.py for details.
