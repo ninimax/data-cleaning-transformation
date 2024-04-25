@@ -27,7 +27,7 @@ A pipeline app for data cleaning and transformation based on the requirements
 
 - Run this command to tell the interpreter where to find the src module
 
-  ```export PYTHONPATH="${PYTHONPATH}:${pwd}/src/```
+  ```export PYTHONPATH="${PYTHONPATH}:${pwd}/src/"```
 
 - Run the app
 
