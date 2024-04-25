@@ -24,6 +24,11 @@ A pipeline app for data cleaning and transformation based on the requirements
 - Install dependencies
 
   ```pip install -r requirements.txt```
+
+- Run this command to tell the interpreter where to find the src module
+
+  ```export PYTHONPATH="${PYTHONPATH}:${pwd}/src/```
+
 - Run the app
 
   ```python ./src/pipeline.py```
