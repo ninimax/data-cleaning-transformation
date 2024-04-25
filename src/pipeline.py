@@ -6,10 +6,10 @@ import os
 
 import pandas as pd
 
+from src import ingestion, logger, quality_checks, processing
+
 # disable warnings while using pipe(), default='warn'
 pd.options.mode.chained_assignment = None
-
-from src import ingestion, logger, quality_checks, processing
 
 app_logger = logger.create_logger(logger.LoggerType.APPLICATION)
 dq_logger = logger.create_logger(logger.LoggerType.DATA_QUALITY)
@@ -155,7 +155,7 @@ def data_integration(fleet, maintenance):
 
 if __name__ == "__main__":
     json_obj = load_json(JSON_CONFIG_DIR)
-    fleet_data_path = f"{ROOT_PATH}{json_obj['fleet']["path"]}"
-    maintenance_data_path = f"{ROOT_PATH}{json_obj['maintenance']["path"]}"
-    export_file_path = f"{ROOT_PATH}{json_obj['export']["path"]}"
+    fleet_data_path = f"{ROOT_PATH}{json_obj['fleet']['path']}"
+    maintenance_data_path = f"{ROOT_PATH}{json_obj['maintenance']['path']}"
+    export_file_path = f"{ROOT_PATH}{json_obj['export']['path']}"
     run(fleet_data_path, maintenance_data_path, export_file_path)
